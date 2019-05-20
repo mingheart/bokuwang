@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)https://www.bookuu.com/login.php -->
+<html>
+     <head>
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- 字体图标 -->
+    <link rel="stylesheet" type="text/css" href="../boot/css/bootstrap.css">
+    <!-- <link rel="stylesheet" type="text/css" h../ref="css/component.css"> -->
+    <link rel="stylesheet" type="text/css" href="../css/public.css">
+    <link rel="stylesheet" type="text/css" href="../css/module.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <script type="text/javascript" src="../lib/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+    <title>login</title>
+    <!-- <link type="text/css" rel="stylesheet" href="css/chatStyle.css"></head> -->
+<body>
+<div class="header-simple">
+    <div class="wd-1200 ma">
+        <a href="../index.html">
+            <img class="va-md" src="../images/logo.png" height="45" width="261" alt="">
+        </a>
+    </div>
+</div>
+<div class="login-banner-wrap">
+    <div class="content">
+        <div class="login-form fr">
+            <div class="bb-1-e8">
+                <p class="fs-16 cl-bl-l">博库用户登录</p>
+            </div>
+            <ul class="mt-20">
+                <li class="item pr" style="zoom: 1;">
+                    <div class="fl login-user ta-ct">
+                        <label for="phone">
+                            <span class="glyphicon glyphicon-user" style="font-size:20px;color:#a9a9a9;"></span>
+                        </label>
+                    </div>
+                    <input class="fl" id="phone" type="text" placeholder="请输入手机号/用户名" name="user-name">
+                    <!-- <span class="icon-zzwrong-block fs-16 cl-67"></span> -->
+                    <div class="cb"></div>
+                </li>
+                <li class="item mt-20 pr" style="zoom: 1;">
+                    <div class="fl login-user ta-ct">
+                        <label for="password">
+                            <span class="glyphicon glyphicon-lock" style="font-size:20px;color:#a9a9a9;"> </span>
+                        </label>
+                    </div>
+                    <input class="fl" id="password" type="password" name="user-password">
+                    <div class="cb"></div>
+                </li>
+                <li class="mt-20">
+                    <div class="fl pr-10">
+                        <div class="fl">
+                            <label for="authcode">
+                                <p class="lh-38">验证码：</p>
+                            </label>
+                        </div>
+                        <input id="authcode" class="br-4 fl" type="text" name="passport" maxlength="4">
+                        <div class="cb"></div>
+                    </div>
+                    <div class="fl lh-40">
+                        <img class="va-md pr-10 check_img" src="../images/authcode.php" alt="">
+                        <a class="cl-bl get_authcode" href="javascript:void(0);">换一张</a>
+                    </div>
+                    <div class="cb"></div>
+                </li>
+                <li class="mt-10">
+                    <!-- .reg-err 表单错误信息显示区域 除了找回密码发送验证 不用cl-rd 其余所有错误同意使用cl-rd -->
+                    <div class="fl reg-err">
+
+                    </div>
+                    <div class="fr"><p><a class="cl-bl" href="javascript:void">找回密码</a></p></div>
+                    <div class="cb"></div>
+                </li>
+                <li>
+                    <button style="cursor:pointer" class="login-btn fs-16 lh-2p4" type="button">登录</button>
+                    <p class="fs-12 cl-rd">因博库帐号升级，若您无法正常登录，请尝试找回密码。</p>
+                </li>
+                <li class="mt-20">
+                    <div class="fl pr-50">
+                        <a href="javascript:void"><img class="va-md mr-5" src="../images/qq-block.png" height="20" width="20" alt="">QQ登录</a>
+                    </div>
+                    <div class="fl">
+                        <a href="javascript:void"><img class="va-md mr-5" src="../images/zhifu-block.png" height="20" width="20" alt="">支付宝登录</a>
+                    </div>
+                    <div class="cb"></div>
+                </li>
+                <li class="mt-10">
+                    <div class="login-reg lh-38 ta-ct">
+                        <a class="cl-bl" href="regi.html">马上注册新用户</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="cb"></div>
+    </div>
+</div>
+<!-- 底部 -->
+
+
+    <!-- 底部 -->
+<div id="footer">
+            <div class="container">
+                <div class="tag">
+                        <ul class="clearfix">
+                            <li class="cl-4 lh-25 pd-0500 wd-25p fl">
+                                <img src="https://bnmpstyle.bookuu.com/www/images/zheng.png" width="50" height="50" class="fl mr-10 defaultlazy">
+                                <div class="fl">
+                                    <p class="fs-24">全场正品</p>
+                                    <p>出版社直采·博库正品</p>
+                                </div>
+                                <div class="cb"></div>
+                            </li>
+                            <li class="cl-4 lh-25 pd-0500 wd-25p fl">
+                                <img src="https://bnmpstyle.bookuu.com/www/images/sheng.png" alt="" width="50" height="50" class="fl mr-10 defaultlazy">
+                                <div class="fl">
+                                    <p class="fs-24">全场满59包邮</p>
+                                    <p>惊喜不断·让利多多</p>
+                                </div>
+                                <div class="cb"></div>
+                            </li>
+                            <li class="cl-4 lh-25 pd-0500 wd-25p fl">
+                                <img src="https://bnmpstyle.bookuu.com/www/images/huo.png" alt="" width="50" height="50" class="fl mr-10 defaultlazy">
+                                <div class="fl">
+                                    <p class="fs-24">门店自取</p>
+                                    <p>就近取货·方式灵活</p>
+                                </div>
+                                <div class="cb"></div>
+                            </li>
+                            <li class="cl-4 lh-25 pd-0500 wd-25p fl">
+                                <img src="https://bnmpstyle.bookuu.com/www/images/hao.png" alt="" width="50" height="50" class="fl mr-10 defaultlazy">
+                                <div class="fl">
+                                    <p class="fs-24">售后无忧</p>
+                                    <p>服务体验·更加精彩</p>
+                                </div>
+                                <div class="cb"></div>
+                            </li>
+                        </ul>
+                </div>
+                <div class="wd-1200 ma pd-2000 clearfix mark">
+                    <ul class="links-box fl clearfix">
+                        <li class="lh-30 wd-20p fl">
+                            <span class="db fs-16 lh-40">新手指南</span>
+                            <div><a target="_blank" class="hover" href="">新用户注册</a></div>
+                            <div><a target="_blank" class="hover" href="">购物流程</a></div>
+                            <div><a target="_blank" class="hover" href="">积分制度</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">注册开店</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">激励制度</a></div>
+                        </li>
+                        <li class="lh-30 wd-20p fl">
+                            <span class="db fs-16 lh-40">支付与配送</span>
+                            <div><a target="_blank" class="hover" href="javascript:;">IC卡充值说明</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">验货与签收</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">配送范围</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">自行取货</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">支付方式</a></div>
+                        </li>
+                        <li class="lh-30 wd-20p fl">
+                            <span class="db fs-16 lh-40">售后服务</span>
+                            <div><a target="_blank" class="hover" href="javascript:;">发票制度</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">退换货流程</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">7天无理由退换货</a></div>
+                        </li>
+                        <li class="lh-30 wd-20p fl">
+                            <span class="db fs-16 lh-40">个人中心</span>
+                            <div><a target="_blank" class="hover" href="javascript:;">店铺设置</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">团队管理</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">收入管理</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">我的订单</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">我的优惠券</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">我的等级</a></div>
+                        </li>
+                        <li class="lh-30 wd-20p fl">
+                            <span class="db fs-16 lh-40">了解博库</span>
+                            <div><a target="_blank" class="hover" href="javascript:;">关于博库</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">联系我们</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">博库网隐私政策</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">博库用户注册协议</a></div>
+                            <div><a target="_blank" class="hover" href="javascript:;">博库网分销商注册协议</a></div>
+                        </li>
+                    </ul>
+                    <div class="code-box fr">
+                        <ul class="clearfix">
+                            <li class="lh-30 ta-ct wd-50p fl">
+                                <p class="fs-16 lh-40">手机博库</p>
+                                <img src="../images/app.jpg" width="107px" height="107px" class="db bd-1-d ma">
+                                <p class="lh-30">下载手机客户端</p>
+                            </li>
+                            <li class="lh-30 ta-ct wd-50p fl">
+                                <p class="fs-16 lh-40">关注微信</p>
+                                <img src="../images/wx.jpg" width="107px" height="107px" class="db bd-1-d ma">
+                                <p class="lh-30">关注官方微信</p>
+                            </li>
+                        </ul>
+                        <div class="lh-25 mt-15">
+                            <p class="fs-16 fw-bd">服务热线&nbsp;0571-26306883</p>
+                            <p>服务时间&nbsp;9：00-21：00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>    
+<div id="copyright">
+    <div class="wd-605 ma cl-9 ta-ct mark1 clearfix" style="width: 656px;">
+        <div class="fl lh-50">
+            <img src="https://bnmpstyle.bookuu.com/www/images/jingcha.png" alt="" height="36" class="va-md pd-0005 defaultlazy">
+            <a href="##" target="_blank">
+                <img src="https://bnmpstyle.bookuu.com/www/images/huizhang.png" alt="" height="36" class="va-md pd-0005 defaultlazy">
+            </a>
+        </div>
+        <div class="fl pd-0010">
+            <p>©Copyright 2005-2017 bookuu.com 版权所有</p>
+            <p>增值电信业务经营许可证:浙B2-2011021</p>
+            <a class="copyRightA" href="##" target="_blank">出版物经营许可证新出发浙批字第300411号</a>
+        </div>
+        <!-- <div class="fl lh-50">
+            <a href="https://ss.knet.cn/verifyseal.dll?sn=e14082133010052836nfbw000000&comefrom=trust&trustKey=dn&trustValue=www.bookuu.com" target="_blank"><img data-src="https://bnmpstyle.bookuu.com/www/images/knetSealLogo.png" alt="" height="30" class="va-md pd-0005 defaultlazy"></a>
+            <a href="https://credit.szfw.org/CX20160711016212850139.html" target="_blank"><img data-src="https://bnmpstyle.bookuu.com/www/images/cert.png" alt="" height="30" class="va-md pd-0005 defaultlazy"></a>
+        </div> -->
+        <div class="cb"></div>
+    </div>
+</div>
+
+<script>
+  // 账号密码高亮处理
+$('.get_authcode').click(function () {
+        $(".check_img").attr('src', '../authcode.php?_=' + Math.random());
+    });
+    $("#phone").click(function () {
+        $(this).parent().addClass('active');
+        if ($(this).val() !== '') {
+            $(".icon-zzwrong-block").addClass('active');
+        }
+    });
+
+    $("#phone").on('blur', function () {
+        if ($('#phone').val() == '') {
+            $("li.item.pr").removeClass('active');
+        }
+    });
+    $("#password").click(function () {
+        $(this).parent().addClass('active');
+        if ($(this).val() !== '') {
+            $("li.item.pr").addClass('active');
+        }
+    });
+
+    $("#password").on('blur', function () {
+        if ($('#password').val() == '') {
+            $("li.item.pr").removeClass('active');
+        }
+    });
+
+    /*
+     //清除用户名
+     $('.login-form').on('click','.icon-zzwrong-block',function(){
+     $(this).removeClass('active').prev().val('');
+     });
+
+     $('.login-form input').each(function(i,el){
+     if($(el).attr('name') !== 'passport') {
+
+     $(el).on('keyup',function(){
+     if($(el).val() !== '') $(this).next().addClass('active');
+     });
+     $(el).on('focus',function(){
+     if($(el).val() !== '') $(this).next().addClass('active');
+     $(this).parent().addClass('active');
+     });
+
+     $(el).on('blur',function(){
+     $(this).parent().removeClass('active');
+     $(this).next().removeClass('active');
+     });
+     }
+     });
+     */
+    // removeCookie('phone');
+    $('.login-btn').on('click',function(){
+        if(getCookie('phone')){
+            alert('请先退出登陆.');
+        }else{
+            $.ajax({
+                type: 'post',
+                url: '../api/login.php',
+                data: 'name=' + $('#phone').val() + '&psw=' + $('#password').val(),
+                success: function(str) {
+                  
+                    if(str == 'yes') {
+                        location.href = '../index.html';
+                        setCookie('phone', $('#phone').val(), 1); //登陆的时候存到cookie里面
+                    } else {
+                        alert('登陆失败');
+                    }
+                }
+            })
+        }
+    })
+
+</script>
+</body></head></html>

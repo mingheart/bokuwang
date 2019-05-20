@@ -1,0 +1,92 @@
+/* 
+* @Author: Marte
+* @Date:   2019-05-09 22:57:13
+* @Last Modified by:   Marte
+* @Last Modified time: 2019-05-17 21:36:03
+*/
+
+.container a {text-decoration:none; }
+.menu{
+    display:none;    
+}
+.menu.active{
+    display:block;}
+.wd-20p .cl-6{
+    width:100%;
+    padding:0;
+    margin:0;
+    border:none;
+}
+#pages a{
+        display: block;
+        width: 31px;
+        height: 31px;
+        border: 1px solid #ccc;
+        background: #C2C2C2;
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+        line-height: 31px;
+        float:left;
+        margin-right: 10px;
+}
+#pages .active{
+    background:lightblue;
+}
+.search{
+    cursor:pointer;
+}
+
+     /*分页*/
+/*
+    .paginations.two {
+        display: inline-block;
+        border: 1px solid #bbb;
+        border-radius: 3px;
+    }
+    .paginations.two a {
+        display: block;
+        float: left;
+        width: 27px;
+        height: 27px;
+        outline: none;
+        color: #999999;
+        vertical-align: middle;
+        text-align: center;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+        font-family: Times, 'Times New Roman', Georgia, Palatino;
+        position: relative;
+    }
+    .paginations a:hover{
+        color: #2db4ea;
+    }
+    .paginations a.disabled, .paginations a.disabled:hover, .paginations a.disabled:focus, .paginations a.disabled:active {
+        color: #ccc;
+        cursor: default;
+    }
+
+    .paginations.two input {
+        float: left;
+        margin: 0;
+        padding: 0;
+        min-width: 40px;
+        height: 27px;
+        outline: none;
+        border: none;
+        vertical-align: middle;
+        text-align: center;
+        color: #999;
+    }*/
+    .fl.pd-5.bd-1-e8.pr{
+        width: 217px;/*height: 342px;*/
+        padding:5px;border:1px solid #e8e8e8;
+        margin:8px 8px;
+    }
+    .fl.pd-5.bd-1-e8.pr h3{
+        text-align: center;
+    }
+    .fl.pd-5.bd-1-e8.pr p{
+        text-align: center;
+    }

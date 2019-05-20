@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="../boot/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="../css/base.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/common.css" />
+        <link rel="stylesheet" type="text/css" href="../css/regi.css" />
+        <script type="text/javascript" src="../lib/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="../js/common.js"></script>
+        <script type="text/javascript" src="../js/gVerify.js"></script>
+        <script type="text/javascript" src="../js/regi.js"></script>
+    </head>
+    <body>
+        <div id="head">
+                <div class="container clearfix">
+                    <div class="loginUser fl head_c">
+                    <span id='loginUser'><a href="login.html">登陆</a>&nbsp;|
+                    <a href="regi.html" class="little_r little_l">免费注册</a></span>
+                    <a href="#"><i class="glyphicon glyphicon-phone" style="font-size:14px; color: #1E9FFF;"></i>下载博库app</a></div>
+                    <div class="fr head_c">
+                        <a href="#" class="little_r mylist">我的博库
+                        <!-- 悬停显示 -->
+                        <i class="glyphicon glyphicon-chevron-down"></i>
+                        <div class="myboku">
+                            <p>我的订单</p>
+                            <p>我的优惠券</p>
+                            <p>我的收藏</p>
+                            <p>我的收入</p>
+                            <p>官方消息</p>
+                        </div>
+                        </a>|
+                        <a href="#" class="little_c">收藏夹</a>|
+                        <a href="#" class="little_c">店铺管理</a>|
+                        <a href="#" class="little_l">联系客服</a>
+                    </div>
+                </div>
+        </div>
+        <div id="bookuu">
+                <div class="container">
+                    <div class="logo clearfix">
+                        <a href="../index.html" class="fl"><img src="../images/logo.png" height="45" width="261" alt="" />
+                        </a>
+                    </div>
+                </div>
+        </div>
+        <div id="regi">
+            <div class="container">
+                <div class="regi_title">
+                    <h3>用户注册</h3>
+                </div>
+                <div class="content">
+                    <div class="wd-720 mg-a mt-20">
+                        <form class="reg-frame lh-2p5">
+                            <ul>
+                                <li>
+                                    <!-- .reg-err 表单错误信息显示区域 除了找回密码发送验证 不用cl-rd 其余所有错误同意使用cl-rd -->
+                                    <div class="pl-90 reg-err ht-35"></div>
+                                </li>
+                                <li>
+                                    <div class="wd-90 ta-rt fl">手机号：</div>
+                                    <div class="fl pr">
+                                        <input class="wd-266 ht-24 lh-24 pd-0406" type="text" name="user-tel" id="phone" value="">
+                                        <!-- <span class="icon-zzwrong-block cl-67"></span> -->
+                                    </div>
+                                    <div class="fl ml-10">
+                                        <p>&nbsp;</p>
+                                    </div>
+                                    <div class="cb"></div>
+                                </li>
+                                <li class="mt-20">
+                                    <div class="wd-90 ta-rt fl">图形验证码：</div>
+                                    <div class="fl">
+                                        <div class="fl pr">
+                                            <input class="wd-166 ht-24 lh-24 pd-0406" type="text" name="passport" id="code_input" value="" maxlength="4">
+                                            <!-- <span class="icon-zzwrong-block cl-67"></span> -->
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="fl ml-10">
+                                        <a class="cl-bl-l get_authcode" id="v_container" href="javascript:void(0);" 
+                                        style="width:90px;height: 34px;display:block;"></a>
+                                    </div>
+                                    <div class="fl check_img1"
+                                        style="width:90px;height:34px"></div>
+                                    <div class="cb"></div>
+                                </li>
+                                <li class="mt-20">
+                                    <div class="wd-90 ta-rt fl">验证码：</div>
+                                    <div class="fl">
+                                        <div class="fl pr">
+                                            <input class="wd-156 ht-24 lh-24 pd-0406" type="text" name="smscode" id="smscode" value="">
+                                            <!-- <span class="icon-zzwrong-block cl-67"></span> -->
+                                        </div>
+                                        <button class="reg-frame-btn ml-10 " id="getchecknum"  type="button" style="cursor:pointer">获取验证码</button>
+                                    </div>
+                                    <div class="fl ml-10">
+                                        <p>&nbsp;</p>
+                                    </div>
+                                    <div class="cb"></div>
+                                </li>
+                                <li class="mt-20">
+                                    <div class="wd-90 ta-rt fl">密 码：</div>
+                                    <div class="fl pr">
+                                        <input class="wd-266 ht-24 lh-24 pd-0406" type="password" name="user-password" id="password" value="" maxlength="20">
+                                        <!-- <span class="icon-zzwrong-block cl-67"></span> -->
+                                        <!-- <span class="icon-zzeye-block cl-dc"></span> -->
+                                    </div>
+                                    <div class="fl ml-10 cl-9 hidden">
+                                        <p>密码可使用字母加数字或符号的组合长度6-20个字符</p>
+                                    </div>
+                                    <div class="fl check_img2"
+                                        style="width:90px;height:34px"></div>
+                                    <div class="cb"></div>
+                                </li>
+                                <li class="wd-370 ta-ct">
+                                    <button class="reg-btn mt-35 lh-2p4" style="cursor:pointer"  type="button">注册</button>
+                                    <div class="wd-328 ma">
+                                        <p class="ta-rt cl-bl-l" style="cursor:pointer">已有账号&nbsp;<a class="cl-bl-l" href="https://www.bookuu.com/login.php">前往登录</a></p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ta-ct wd-300" style="margin-left: 20px;line-height: 20px;padding: 20px 0 200px 0;">
+                                        <label class="pr">
+                                            <!-- <span class="icon-checkbox-line"></span> -->
+                                            <input id="treaty-btn" class="pa op-0" name="treaty" type="checkbox" value="我已阅读并同意">我已阅读并同意
+                                            <a class="cl-bl-l showProtocal protocal" data-type="one" href="javascript:;">《博库网用户注册协议》</a><br />
+                                            <a class="cl-bl-l db showProtocal" data-type="two" href="javascript:;">《博库网隐私政策》</a>
+                                        </label>
+                                        
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

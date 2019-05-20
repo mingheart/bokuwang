@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!-- 字体图标 -->
+<link rel="stylesheet" type="text/css" href="../boot/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/public.css">
+<link rel="stylesheet" type="text/css" href="../css/module.css">
+<link rel="stylesheet" type="text/css" href="../css/common.css" />
+<link rel="stylesheet" type="text/css" href="../css/mycart.css" />
+<script type="text/javascript" src="../lib/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<!-- <script type="text/javascript" src="../js/mycart.js"></script> -->
+<script type="text/javascript">
+$(function(){
+    // cookie的操作
+    if(getCookie('phone')){
+        $('#loginUser').html(
+            '欢迎,'+getCookie('phone')+'|<a href="javascript:;" id="unlog">退出登录</a>'
+        );
+        $('#loginUser').css({'fontFamily':'"微软雅黑", "黑体", "Microsoft YaHei", "SimSun", Helvetica, Arial, sans-serif'});
+    }
+    $('#unlog').on('click',function(){
+        removeCookie('phone');
+        removeCookie('uid');
+
+        location.href='listpage.html';
+    });
+        // ajax2({
+        //     type: 'get',
+        //     url: '../api/mycart.php',
+        //     data: 'uid='+1,
+        //     success: function(str) {
+        //       var arr = JSON.parse(str);
+        //       // console.log(arr.goodlist1);
+        //       //  arr.forEach(function(item){
+        //       //    obj2.gid=item.gid;
+        //       //    obj2.imgurl=item.imgurl;
+        //       //    obj2.price = item.price;
+        //       //    obj2.price2=item.price2;
+        //       //    obj2.bookname=item.bookname;
+        //       //    obj2.collection=item.collection;
+        //       //    obj2.type=item.type;
+        //       //  });
+               
+        //       //  $('#slider').html('<img src="../'+obj2.imgurl+'" alt="">');
+        //       //  $('#slider').magnifier();
+        //       //  $('#carousel').html('<img src="../'+obj2.imgurl+'" alt="">');
+        //       //  $('.www_goods_name').html(obj2.bookname);
+        //       //  $('.book_type').html(obj2.type);
+        //       //  $('#www_goods_market_price').html('¥'+obj2.price2+'.00');
+        //       //  $('#www_goods_price').html('¥'+obj2.price);
+        //       //  $('.book_collection').html(obj2.collection);
+        //     }
+        // });
+    ajax2({
+        type: 'get',
+        // cache : true,
+        // async : false,
+        url: '../api/mycart.php',
+        data: 'uid=' + getCookie('uid') ,
+        success: function(str) {
+             console.log(str);
+             // create(str);
+             var arr = JSON.parse(str);
+             console.log(arr.goodslist1);
+             var res1 = arr.goodslist1.map(function(item,index) { 
+                var num=index+2;
+                console.log(num);
+                arr[index]=index;
+                console.log(arr);
+                return `<ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="checkbox_${num}" class="son_check">
+                        <label for="checkbox_${num}"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="../${item.imgurl}" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;">${item.bookname}</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>规格：默认</p>
+                        <p>尺寸：16*16*3(cm)</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥${item.price}</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="${item.qty}" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥${Number(item.price)*Number(item.qty)}</p>
+                    </li>
+                    <li class="list_op">
+                        <p class="del"><a href="javascript:;" class="delBtn" good-id="${item.gid}">移除商品</a></p>
+                    </li>
+                </ul>`
+             }).join('');
+            console.log($('.order_content').eq(0));
+            $('.order_content').eq(0).html(res1);
+
+            var res2 = arr.goodslist2.map(function(item,index) { 
+                // var num=index+2;
+                // num++;
+                var arr2=Object.keys(arr);
+                var num2=arr2.length;
+                var num2=num2+index;
+                console.log(num2);
+                // console.log(num);
+                // arr[index]=index;
+                // console.log(arr[0]);
+                return `<ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="checkbox_${num2}" class="son_check">
+                        <label for="checkbox_${num2}"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="../${item.imgurl}" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;">${item.bookname}</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>规格：默认</p>
+                        <p>尺寸：16*16*3(cm)</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥${item.price}</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="${item.qty}" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥${(Number(item.price)*Number(item.qty)).toFixed(2)}</p>
+                    </li>
+                    <li class="list_op">
+                        <p class="del"><a href="javascript:;" class="delBtn" good-id="${item.gid}">移除商品</a></p>
+                    </li>
+                </ul>`
+             }).join('');
+            console.log($('.order_content').eq(1));
+            $('.order_content').eq(1).html(res2);
+            create();
+            $('a.delBtn').on('click',function(){
+                console.log($(this).attr('good-id'));
+                console.log($('input.sum').val());
+                var gid=$(this).attr('good-id');
+                // var qty=$('input.sum').val();
+                
+                $.ajax({
+                    type:'get',
+                    url:'../api/removecart.php',
+                    data:'gid='+gid+'&uid='+getCookie('uid'),
+                    success:function(str){
+                        console.log(str);
+                        // if(str=='yes'){
+                        //     alert('添加购物车成功');
+                        // }
+                        // let arr = JSON.parse(str);
+                        // console.log(arr);
+                        if(str=='yes'){
+                            console.log('删除成功');
+                        }
+                        // arr.total[0].sum(qty)
+                        // for(let i in arr.total[0]) {
+                        //     (arr.total[0])[i];
+                        //     console.log((arr.total[0])[i]);
+                        //     $('.cartnum').html((arr.total[0])[i]);
+                        // };
+                        
+                    }
+                })
+            })
+            
+        }
+    })
+    console.log($('a.plus'));
+    $('a.plus').on('click',function(){
+        // $('.sum').html($('.sum').val()+1);
+        // alert('12');  
+    })
+    // 购物车的jq功能
+        function create(){
+    //全局的checkbox选中和未选中的样式
+    var $allCheckbox = $('input[type="checkbox"]'),     //全局的全部checkbox
+        $wholeChexbox = $('.whole_check'),
+        $cartBox = $('.cartBox'),                       //每个商铺盒子
+        $shopCheckbox = $('.shopChoice'),               //每个商铺的checkbox
+        $sonCheckBox = $('.son_check');                 //每个商铺下的商品的checkbox
+    $allCheckbox.click(function () {
+        if ($(this).is(':checked')) {
+            $(this).next('label').addClass('mark');
+        } else {
+            $(this).next('label').removeClass('mark')
+        }
+    });
+
+    //===============================================全局全选与单个商品的关系================================
+    $wholeChexbox.click(function () {
+        var $checkboxs = $cartBox.find('input[type="checkbox"]');
+        if ($(this).is(':checked')) {
+            $checkboxs.prop("checked", true);
+            $checkboxs.next('label').addClass('mark');
+        } else {
+            $checkboxs.prop("checked", false);
+            $checkboxs.next('label').removeClass('mark');
+        }
+        totalMoney();
+    });
+
+
+    $sonCheckBox.each(function () {
+        $(this).click(function () {
+            if ($(this).is(':checked')) {
+                //判断：所有单个商品是否勾选
+                var len = $sonCheckBox.length;
+                var num = 0;
+                $sonCheckBox.each(function () {
+                    if ($(this).is(':checked')) {
+                        num++;
+                    }
+                });
+                if (num == len) {
+                    $wholeChexbox.prop("checked", true);
+                    $wholeChexbox.next('label').addClass('mark');
+                }
+            } else {
+                //单个商品取消勾选，全局全选取消勾选
+                $wholeChexbox.prop("checked", false);
+                $wholeChexbox.next('label').removeClass('mark');
+            }
+        })
+    })
+
+    //=======================================每个店铺checkbox与全选checkbox的关系/每个店铺与其下商品样式的变化===================================================
+
+    //店铺有一个未选中，全局全选按钮取消对勾，若店铺全选中，则全局全选按钮打对勾。
+    $shopCheckbox.each(function () {
+        $(this).click(function () {
+            if ($(this).is(':checked')) {
+                //判断：店铺全选中，则全局全选按钮打对勾。
+                var len = $shopCheckbox.length;
+                var num = 0;
+                $shopCheckbox.each(function () {
+                    if ($(this).is(':checked')) {
+                        num++;
+                    }
+                });
+                if (num == len) {
+                    $wholeChexbox.prop("checked", true);
+                    $wholeChexbox.next('label').addClass('mark');
+                }
+
+                //店铺下的checkbox选中状态
+                $(this).parents('.cartBox').find('.son_check').prop("checked", true);
+                $(this).parents('.cartBox').find('.son_check').next('label').addClass('mark');
+            } else {
+                //否则，全局全选按钮取消对勾
+                $wholeChexbox.prop("checked", false);
+                $wholeChexbox.next('label').removeClass('mark');
+
+                //店铺下的checkbox选中状态
+                $(this).parents('.cartBox').find('.son_check').prop("checked", false);
+                $(this).parents('.cartBox').find('.son_check').next('label').removeClass('mark');
+            }
+            totalMoney();
+        });
+    });
+
+
+    //========================================每个店铺checkbox与其下商品的checkbox的关系======================================================
+
+    //店铺$sonChecks有一个未选中，店铺全选按钮取消选中，若全都选中，则全选打对勾
+    $cartBox.each(function () {
+        var $this = $(this);
+        var $sonChecks = $this.find('.son_check');
+        $sonChecks.each(function () {
+            $(this).click(function () {
+                if ($(this).is(':checked')) {
+                    //判断：如果所有的$sonChecks都选中则店铺全选打对勾！
+                    var len = $sonChecks.length;
+                    var num = 0;
+                    $sonChecks.each(function () {
+                        if ($(this).is(':checked')) {
+                            num++;
+                        }
+                    });
+                    if (num == len) {
+                        $(this).parents('.cartBox').find('.shopChoice').prop("checked", true);
+                        $(this).parents('.cartBox').find('.shopChoice').next('label').addClass('mark');
+                    }
+
+                } else {
+                    //否则，店铺全选取消
+                    $(this).parents('.cartBox').find('.shopChoice').prop("checked", false);
+                    $(this).parents('.cartBox').find('.shopChoice').next('label').removeClass('mark');
+                }
+                totalMoney();
+            });
+        });
+    });
+
+
+    //=================================================商品数量==============================================
+    var $plus = $('.plus'),
+        $reduce = $('.reduce'),
+        $all_sum = $('.sum');
+    $plus.click(function () {
+        var $inputVal = $(this).prev('input'),
+            $count = parseInt($inputVal.val())+1,
+            $obj = $(this).parents('.amount_box').find('.reduce'),
+            $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
+            $price = $(this).parents('.order_lists').find('.price').html(),  //单价
+            $priceTotal = $count*parseInt($price.substring(1));
+        $inputVal.val($count);
+        $priceTotalObj.html('￥'+$priceTotal);
+        if($inputVal.val()>1 && $obj.hasClass('reSty')){
+            $obj.removeClass('reSty');
+        }
+        totalMoney();
+    });
+
+    $reduce.click(function () {
+        var $inputVal = $(this).next('input'),
+            $count = parseInt($inputVal.val())-1,
+            $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
+            $price = $(this).parents('.order_lists').find('.price').html(),  //单价
+            $priceTotal = $count*parseInt($price.substring(1));
+        if($inputVal.val()>1){
+            $inputVal.val($count);
+            $priceTotalObj.html('￥'+$priceTotal);
+        }
+        if($inputVal.val()==1 && !$(this).hasClass('reSty')){
+            $(this).addClass('reSty');
+        }
+        totalMoney();
+    });
+
+    $all_sum.keyup(function () {
+        var $count = 0,
+            $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
+            $price = $(this).parents('.order_lists').find('.price').html(),  //单价
+            $priceTotal = 0;
+        if($(this).val()==''){
+            $(this).val('1');
+        }
+        $(this).val($(this).val().replace(/\D|^0/g,''));
+        $count = $(this).val();
+        $priceTotal = $count*parseInt($price.substring(1));
+        $(this).attr('value',$count);
+        $priceTotalObj.html('￥'+$priceTotal);
+        totalMoney();
+    })
+
+    //======================================移除商品========================================
+
+    var $order_lists = null;
+    var $order_content = '';
+    $('.delBtn').click(function () {
+        $order_lists = $(this).parents('.order_lists');
+        $order_content = $order_lists.parents('.order_content');
+        $('.model_bg').fadeIn(300);
+        $('.my_model').fadeIn(300);
+    });
+
+    //关闭模态框
+    $('.closeModel').click(function () {
+        closeM();
+    });
+    $('.dialog-close').click(function () {
+        closeM();
+    });
+    function closeM() {
+        $('.model_bg').fadeOut(300);
+        $('.my_model').fadeOut(300);
+    }
+    //确定按钮，移除商品
+    $('.dialog-sure').click(function () {
+        $order_lists.remove();
+        if($order_content.html().trim() == null || $order_content.html().trim().length == 0){
+            $order_content.parents('.cartBox').remove();
+        }
+        closeM();
+        $sonCheckBox = $('.son_check');
+        totalMoney();
+    })
+
+    //======================================总计==========================================
+
+    function totalMoney() {
+        var total_money = 0;
+        var total_count = 0;
+        var calBtn = $('.calBtn a');
+        $sonCheckBox.each(function () {
+            if ($(this).is(':checked')) {
+                var goods = parseInt($(this).parents('.order_lists').find('.sum_price').html().substring(1));
+                var num =  parseInt($(this).parents('.order_lists').find('.sum').val());
+                total_money += goods;
+                total_count += num;
+            }
+        });
+        $('.total_text').html('￥'+total_money);
+        $('.piece_num').html(total_count);
+
+        // console.log(total_money,total_count);
+
+        if(total_money!=0 && total_count!=0){
+            if(!calBtn.hasClass('btn_sty')){
+                calBtn.addClass('btn_sty');
+            }
+        }else{
+            if(calBtn.hasClass('btn_sty')){
+                calBtn.removeClass('btn_sty');
+            }
+        }
+    }
+};
+
+
+})
+</script>
+<title id="www_pc_title">mycart</title>
+</head>
+<body>
+<div id="head">
+                <div class="container clearfix">
+                    <div class="loginUser fl head_c">
+                    <span id='loginUser'><a href="#">登陆</a>&nbsp;|
+                    <a href="regi.html" class="little_r little_l">免费注册</a></span>
+                    <a href="login.html"><i class="glyphicon glyphicon-phone" style="font-size:14px; color: #1E9FFF;"></i>下载博库app</a></div>
+                    <div class="fr head_c">
+                        <a href="#" class="little_r mylist">我的博库
+                        <!-- 悬停显示 -->
+                        <i class="glyphicon glyphicon-chevron-down"></i>
+                        <div class="myboku">
+                            <p>我的订单</p>
+                            <p>我的优惠券</p>
+                            <p>我的收藏</p>
+                            <p>我的收入</p>
+                            <p>官方消息</p>
+                        </div>
+                        </a>|
+                        <a href="#" class="little_c">收藏夹</a>|
+                        <a href="#" class="little_c">店铺管理</a>|
+                        <a href="#" class="little_l">联系客服</a>
+                    </div>
+                </div>
+</div>
+<div class="header-simple">
+    <div class="wd-1200 ma">
+        <a href="../index.html">
+            <img class="va-md" src="../images/logo.png" height="45" width="261" alt="">
+        </a>
+    </div>
+</div>
+<div class="section">
+    <div class="wd-1200 ma">
+        <p class="ht-50 lh-50">
+            <span class="fl fs-18">我的购物车</span>
+            <span class="fr cl-9">温馨提示:1.购物车中的商品无法保留库存，请您尽快完成购买。2.商品的价格和库存将以订单提交时为准哦。</span>
+        </p><div class="cb"></div>
+        <p></p>
+        <section class="cartMain">
+        <div class="cartMain_hd">
+            <ul class="order_lists cartTop">
+                <li class="list_chk">
+                    <!--所有商品全选-->
+                    <input type="checkbox" id="all" class="whole_check">
+                    <label for="all"></label>
+                    全选
+                </li>
+                <li class="list_con">商品信息</li>
+                <li class="list_info">商品参数</li>
+                <li class="list_price">单价</li>
+                <li class="list_amount">数量</li>
+                <li class="list_sum">金额</li>
+                <li class="list_op">操作</li>
+            </ul>
+        </div>
+
+        <div class="cartBox">
+            <div class="shop_info">
+                <div class="all_check">
+                    <!--店铺全选-->
+                    <input type="checkbox" id="shop_a" class="shopChoice">
+                    <label for="shop_a" class="shop"></label>
+                </div>
+                <div class="shop_name">
+                    店铺：<a href="javascript:;">搜猎人艺术生活</a>
+                </div>
+            </div>
+            <div class="order_content">
+                <!-- <ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="checkbox_2" class="son_check">
+                        <label for="checkbox_2"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="./images/1.png" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>规格：默认</p>
+                        <p>尺寸：16*16*3(cm)</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥980</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="1" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥980</p>
+                    </li>
+                    <li class="list_op">
+                        <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
+                    </li>
+                </ul> -->
+                <!-- <ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="checkbox_3" class="son_check">
+                        <label for="checkbox_3"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="./images/2.png" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>规格：默认</p>
+                        <p>尺寸：16*16*3(cm)</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥780</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="1" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥780</p>
+                    </li>
+                    <li class="list_op">
+                        <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
+                    </li>
+                </ul>
+                <ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="checkbox_6" class="son_check">
+                        <label for="checkbox_6"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="./images/3.png" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>规格：默认</p>
+                        <p>尺寸：16*16*3(cm)</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥180</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="1" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥180</p>
+                    </li>
+                    <li class="list_op">
+                        <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
+                    </li>
+                </ul> -->
+            </div>
+        </div>
+
+        <div class="cartBox">
+            <div class="shop_info">
+                <div class="all_check">
+                    <!--店铺全选-->
+                    <input type="checkbox" id="shop_b" class="shopChoice">
+                    <label for="shop_b" class="shop"></label>
+                </div>
+                <div class="shop_name">
+                    店铺：<a href="javascript:;">卷卷旗舰店</a>
+                </div>
+            </div>
+            <div class="order_content">
+                <!-- <ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="checkbox_4" class="son_check">
+                        <label for="checkbox_4"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="./images/4.png" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>规格：默认</p>
+                        <p>尺寸：16*16*3(cm)</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥1980</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="1" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥1980</p>
+                    </li>
+                    <li class="list_op">
+                        <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
+                    </li>
+                </ul>
+                <ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="checkbox_5" class="son_check">
+                        <label for="checkbox_5"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="./images/5.png" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>规格：默认</p>
+                        <p>尺寸：16*16*3(cm)</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥480</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="1" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥480</p>
+                    </li>
+                    <li class="list_op">
+                        <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
+                    </li>
+                </ul> -->
+            </div>
+        </div>
+
+        <!-- <div class="cartBox"> -->
+            <!-- <div class="shop_info">
+                <div class="all_check">
+                    店铺全选
+                    <input type="checkbox" id="shop_c" class="shopChoice">
+                    <label for="shop_c" class="shop"></label>
+                </div>
+                <div class="shop_name">
+                    店铺：<a href="javascript:;">卷卷旗舰店</a>
+                </div>
+            </div> -->
+            <!-- <div class="order_content">
+                <ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="checkbox_8" class="son_check">
+                        <label for="checkbox_8"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="./images/1.png" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>规格：默认</p>
+                        <p>尺寸：16*16*3(cm)</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥1980</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="1" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥1980</p>
+                    </li>
+                    <li class="list_op">
+                        <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
+                    </li>
+                </ul>
+                <ul class="order_lists">
+                    <li class="list_chk">
+                        <input type="checkbox" id="checkbox_9" class="son_check">
+                        <label for="checkbox_9"></label>
+                    </li>
+                    <li class="list_con">
+                        <div class="list_img"><a href="javascript:;"><img src="./images/1.png" alt=""></a></div>
+                        <div class="list_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
+                    </li>
+                    <li class="list_info">
+                        <p>规格：默认</p>
+                        <p>尺寸：16*16*3(cm)</p>
+                    </li>
+                    <li class="list_price">
+                        <p class="price">￥480</p>
+                    </li>
+                    <li class="list_amount">
+                        <div class="amount_box">
+                            <a href="javascript:;" class="reduce reSty">-</a>
+                            <input type="text" value="1" class="sum">
+                            <a href="javascript:;" class="plus">+</a>
+                        </div>
+                    </li>
+                    <li class="list_sum">
+                        <p class="sum_price">￥480</p>
+                    </li>
+                    <li class="list_op">
+                        <p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
+                    </li>
+                </ul>
+            </div> -->
+        <!-- </div> -->
+        <!--底部-->
+        <div class="bar-wrapper">
+            <div class="bar-right">
+                <div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
+                <div class="totalMoney">共计: <strong class="total_text">0.00</strong></div>
+                <div class="calBtn"><a href="javascript:;">结算</a></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="model_bg"></section>
+
+    <section class="my_model">
+        <p class="title">删除宝贝<span class="closeModel">X</span></p>
+        <p>您确认要删除该宝贝吗？</p>
+        <div class="opBtn"><a href="javascript:;" class="dialog-sure">确定</a><a href="javascript:;" class="dialog-close">关闭</a></div>
+    </section>
+                  
+    </div>
+</div>
+
+<div id="footer">
+                <div class="container">
+                    <div class="tag">
+                            <ul class="clearfix">
+                                <li class="cl-4 lh-25 pd-0500 wd-25p fl">
+                                    <img src="https://bnmpstyle.bookuu.com/www/images/zheng.png" width="50" height="50" class="fl mr-10 defaultlazy" />
+                                    <div class="fl">
+                                        <p class="fs-24 ">全场正品</p>
+                                        <p>出版社直采·博库正品</p>
+                                    </div>
+                                    <div class="cb"></div>
+                                </li>
+                                <li class="cl-4 lh-25 pd-0500 wd-25p fl">
+                                    <img src="https://bnmpstyle.bookuu.com/www/images/sheng.png" alt="" width="50" height="50" class="fl mr-10 defaultlazy" />
+                                    <div class="fl">
+                                        <p class="fs-24 ">全场满59包邮</p>
+                                        <p>惊喜不断·让利多多</p>
+                                    </div>
+                                    <div class="cb"></div>
+                                </li>
+                                <li class="cl-4 lh-25 pd-0500 wd-25p fl">
+                                    <img src="https://bnmpstyle.bookuu.com/www/images/huo.png" alt="" width="50" height="50" class="fl mr-10 defaultlazy" />
+                                    <div class="fl">
+                                        <p class="fs-24 ">门店自取</p>
+                                        <p>就近取货·方式灵活</p>
+                                    </div>
+                                    <div class="cb"></div>
+                                </li>
+                                <li class="cl-4 lh-25 pd-0500 wd-25p fl">
+                                    <img src="https://bnmpstyle.bookuu.com/www/images/hao.png" alt="" width="50" height="50" class="fl mr-10 defaultlazy" />
+                                    <div class="fl">
+                                        <p class="fs-24 ">售后无忧</p>
+                                        <p>服务体验·更加精彩</p>
+                                    </div>
+                                    <div class="cb"></div>
+                                </li>
+                            </ul>
+                    </div>
+                    <div class="wd-1200 ma pd-2000 clearfix mark">
+                        <ul class="links-box fl clearfix">
+                            <li class="lh-30 wd-20p fl">
+                                <span class="db fs-16 lh-40 ">新手指南</span>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=2&cid=9&cid_name=新用户注册">新用户注册</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=2&cid=10&cid_name=购物流程">购物流程</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=2&cid=11&cid_name=积分制度">积分制度</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=2&cid=12&cid_name=注册开店">注册开店</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=2&cid=13&cid_name=激励制度">激励制度</a></div>
+                            </li>
+                            <li class="lh-30 wd-20p fl">
+                                <span class="db fs-16 lh-40 ">支付与配送</span>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=3&cid=14&cid_name=IC卡充值说明">IC卡充值说明</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=3&cid=15&cid_name=验货与签收">验货与签收</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=3&cid=16&cid_name=配送范围">配送范围</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=3&cid=17&cid_name=自行取货">自行取货</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=3&cid=18&cid_name=支付方式">支付方式</a></div>
+                            </li>
+                            <li class="lh-30 wd-20p fl">
+                                <span class="db fs-16 lh-40 ">售后服务</span>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=5&cid=19&cid_name=发票制度">发票制度</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=5&cid=21&cid_name=退换货流程">退换货流程</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?pid=5&cid=47&cid_name=7天无理由退换货">7天无理由退换货</a></div>
+                            </li>
+                            <li class="lh-30 wd-20p fl">
+                                <span class="db fs-16 lh-40 ">个人中心</span>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=6&cid=27&cid_name=店铺设置">店铺设置</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=6&cid=28&cid_name=团队管理">团队管理</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=6&cid=29&cid_name=收入管理">收入管理</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=6&cid=30&cid_name=我的订单">我的订单</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=6&cid=31&cid_name=我的优惠券">我的优惠券</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=6&cid=32&cid_name=我的等级">我的等级</a></div>
+                            </li>
+                            <li class="lh-30 wd-20p fl">
+                                <span class="db fs-16 lh-40 ">了解博库</span>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=37&cid=38&cid_name=关于博库">关于博库</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?act=list&pid=37&cid=39&cid_name=联系我们">联系我们</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?pid=37&cid=45&cid_name=博库网隐私政策">博库网隐私政策</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?pid=37&cid=41&cid_name=博库用户注册协议">博库用户注册协议</a></div>
+                                <div><a  target="_blank" class="hover" href="/help.php?pid=37&cid=43&cid_name=博库网分销商注册协议">博库网分销商注册协议</a></div>
+                            </li>
+                        </ul>
+                        <div class="code-box fr">
+                            <ul class="clearfix">
+                                <li class=" lh-30 ta-ct wd-50p fl">
+                                    <p class="fs-16 lh-40 ">手机博库</p>
+                                    <img src="../images/app.jpg"  width="107px" height="107px" class="db  bd-1-d ma">
+                                    <p class="lh-30">下载手机客户端</p>
+                                </li>
+                                <li class=" lh-30 ta-ct wd-50p fl">
+                                    <p class="fs-16 lh-40 ">关注微信</p>
+                                    <img src="../images/wx.jpg"  width="107px" height="107px" class="db  bd-1-d ma">
+                                    <p class="lh-30">关注官方微信</p>
+                                </li>
+                            </ul>
+                            <div class=" lh-25 mt-15">
+                                <p class="fs-16 fw-bd">服务热线&nbsp;0571-26306883</p>
+                                <p>服务时间&nbsp;9：00-21：00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</div>
+<div id="copyright">
+    <div class="wd-605 ma cl-9 ta-ct mark1 clearfix" style="width: 656px;">
+        <div class="fl lh-50">
+            <img src="https://bnmpstyle.bookuu.com/www/images/jingcha.png" alt="" height="36" class="va-md pd-0005 defaultlazy">
+            <a href="/system/refer.php" target="_blank">
+                <img src="https://bnmpstyle.bookuu.com/www/images/huizhang.png" alt="" height="36" class="va-md pd-0005 defaultlazy">
+            </a>
+        </div>
+        <div class="fl pd-0010">
+            <p>©Copyright 2005-2017 bookuu.com 版权所有</p>
+            <p>增值电信业务经营许可证:浙B2-2011021</p>
+            <a class="copyRightA" href="https://media2.v.bookuu.com/activity/16/00/20180411160033841.jpg" target="_blank">出版物经营许可证新出发浙批字第300411号</a>
+        </div>
+        <div class="fl lh-50">
+            <a href="https://ss.knet.cn/verifyseal.dll?sn=e14082133010052836nfbw000000&comefrom=trust&trustKey=dn&trustValue=www.bookuu.com" target="_blank"><img data-src="https://bnmpstyle.bookuu.com/www/images/knetSealLogo.png" alt="" height="30" class="va-md pd-0005 defaultlazy"></a>
+            <a href="https://credit.szfw.org/CX20160711016212850139.html" target="_blank"><img data-src="https://bnmpstyle.bookuu.com/www/images/cert.png" alt="" height="30" class="va-md pd-0005 defaultlazy"></a>
+        </div>
+        <div class="cb"></div>
+    </div>
+</div>
+
+</body>
+</html>
